@@ -2,64 +2,72 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_first/components/custom_buttoncalculator.dart';
+import 'package:flutter_first/components/custom_textfieldcalculator.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
+
 
   @override
   State<CalculatorPage> createState() => _CalculatorPageState();
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
+
+  TextEditingController txtAngka1 = TextEditingController();
+  TextEditingController txtAngka2 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("MyCalculator")),
       body: Column(
         children: [
-          Container(
-            margin: EdgeInsets.all(10),
-            child: TextField(
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: InputDecoration(hint: Text("Angka 1"))),
+          CustomTextfieldcalculator(
+            hintText: "Angka 1",
+            controller: txtAngka1,
           ),
 
-          Container(
-            margin: EdgeInsets.all(10),
-            child: TextField(
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: InputDecoration(hint: Text("Angka 2")),
-            ),
+          // 3. Gunakan CustomTextFieldCalculator
+          CustomTextfieldcalculator(
+            hintText: "Angka 2",
+            controller: txtAngka2,
           ),
 
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("+",
-                    style: TextStyle(fontSize: 20)),
+             CustomButtoncalculator(
+                text: "+",
+                onPressed: () {
+                },
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("-",
-                    style: TextStyle(fontSize: 20)),
+              CustomButtoncalculator(
+                text: "-",
+                onPressed: () {
+                },
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("x",
-                    style: TextStyle(fontSize: 20)),
+              CustomButtoncalculator(
+                text: "x",
+                onPressed: () {
+                },
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("/",
-                    style: TextStyle(fontSize: 20)),
+              CustomButtoncalculator(
+                text: "/",
+                onPressed: () {
+                },
               ),
             ],
           ),
-          SizedBox(height: 20,),
-          Text("Hasil")
+
+          const SizedBox(height: 20),
+
+          const Text(
+            "Hasil",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          )
         ],
       ),
     );
