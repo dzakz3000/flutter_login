@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextfield extends StatelessWidget {
   final String myHint;
@@ -11,8 +12,9 @@ class CustomTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: txtController,
-      decoration: InputDecoration
-        (hint: Text(myHint),
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      decoration: InputDecoration(
+        hintText: myHint,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
