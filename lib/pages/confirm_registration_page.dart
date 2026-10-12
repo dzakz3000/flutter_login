@@ -5,6 +5,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
   const ConfirmRegistrationPage({super.key});
 
   @override
+  @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> args = Get.arguments ?? {};
 
