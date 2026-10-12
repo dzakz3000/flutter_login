@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_first/controllers/list_makanan_controller.dart';
+import 'package:flutter_first/pages/detail_makanan_page.dart';
 import 'package:get/get.dart';
 
 
@@ -19,8 +20,7 @@ class ListMakananPage extends StatelessWidget {
             final makanan = controller.dataMakanan[index];
               return InkWell(
                 onTap: () {
-                  //kalau di click pindah ke detail makanan
-                  //mengirim data menggunakan arguments Get.to
+                  Get.to(() => DetailMakananPage(), arguments: makanan);
                 },
                 child: ListTile(title: Text(makanan.namaMakanan, style: TextStyle(fontSize: 20)),
                 subtitle: Text(makanan.harga, style: TextStyle(fontSize: 15)),
