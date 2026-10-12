@@ -5,6 +5,7 @@ class MakananModel {
   String rating;
   String deskripsi;
   String review;
+  String gambarPath;
   // rating,desc,review,image
 
   MakananModel({
@@ -12,7 +13,8 @@ class MakananModel {
     required this.harga,
     required this.rating,
     required this.deskripsi,
-    required this.review
+    required this.review,
+    required this.gambarPath,
   });
 
 }

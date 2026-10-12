@@ -18,6 +18,15 @@ class DetailMakananPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                makanan.gambarPath,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
             Text(
               makanan.namaMakanan,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
