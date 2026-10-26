@@ -67,7 +67,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
             CustomElevatedbutton(
               text: "Submit",
               onPressed: () {
-                Get.toNamed(Routes.confirm_registration, arguments: {
+                Get.toNamed(
+                  Routes.confirm_registration, arguments: {
                   "email": txtEmail.text,
                   "jenis_kelamin": selectedGender ?? "Belum dipilih",
                   "no_wa": txtWa.text,

@@ -10,5 +10,5 @@ class ListMakananController extends GetxController{
     MakananModel(namaMakanan: "Ayam geprek", harga: "12.000", rating: "⭐⭐⭐⭐", review: "Sambelnya enak bikin nagih", deskripsi: "Ayam goreng tepung crispy yang digeprek bersama sambal bawang ulek segar yang pedasnya nampol dan bikin ketagihan, cocok disantap dengan nasi hangat.", gambarPath: "assets/images/geprek.jpg"),
     MakananModel(namaMakanan: "Sate kambing", harga: "15.000", rating: "⭐⭐⭐⭐", review: "Satenya tidak bau amis atau prengus enak sekali", deskripsi: "Potongan daging kambing empuk pilihan yang dibakar menggunakan arang, disajikan dengan bumbu kecap manis, irisan bawang merah segar, dan potongan cabai rawit.", gambarPath: "assets/images/sate.jpg"),
     MakananModel(namaMakanan: "Gulai kambing", harga: "14.000", rating: "⭐⭐⭐⭐⭐", review: "Gulainya enak sekali kuahnya enak", deskripsi: "Olahan daging kambing berkuah santan kental dengan bumbu rempah nusantara yang kuat (seperti kapulaga, cengkeh, dan serai), menghasilkan rasa yang gurih dan harum.", gambarPath: "assets/images/gulai.jpg"),
-  ];
+  ].obs;
 }
