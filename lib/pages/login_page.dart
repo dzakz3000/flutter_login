@@ -1,72 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_first/components/custom_elevatedbutton.dart';
 import 'package:flutter_first/components/custom_textfield.dart';
 import 'package:flutter_first/components/custom_text.dart';
+import 'package:flutter_first/controllers/login_controller.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-
-  TextEditingController txtUsername = TextEditingController();
-  TextEditingController txtPassword = TextEditingController();
-  String statusLogin = "";
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(title: Text("Login page")),
-    body: Column(
-      children: [
-
-        CustomText(
-          text: "Welcome to application" +statusLogin,
-          fontSize: 25,
-          color: const Color.fromARGB(255, 46, 9, 182),
-          fontWeight: FontWeight.bold,
-        ),
-
-        Container(
-          margin: EdgeInsets.all(10),
-          child: CustomTextfield(
-            myHint: "input username",
-            txtController: txtUsername,
+      appBar: AppBar(title: Text("Login page")),
+      body: Column(
+        children: [
+          CustomText(
+            text: "Welcome to application",
+            fontSize: 25,
+            color: const Color.fromARGB(255, 46, 9, 182),
+            fontWeight: FontWeight.bold,
           ),
-        ),
 
-        Container(
-          margin: EdgeInsets.all(10),
-          child: CustomTextfield(
-            myHint: "input password",
-            txtController: txtPassword,
+          Container(
+            margin: EdgeInsets.all(10),
+            child: CustomTextfield(
+              myHint: "input username",
+              txtController: controller.txtUsername,
+            ),
           ),
-        ),
 
-        CustomElevatedbutton(
-          text: "Login",
-          textColor: const Color.fromARGB(255, 30, 175, 44),
-          fontSize: 20,
-          onPressed: () {
-            setState(() {
-              // fungsinya untuk reload / refresh satu page full
-              String username = txtUsername.text.toString();
-              String password = txtPassword.text.toString();
-              if (username == "admin" && password == "admin") {
-                statusLogin = "admin";
-                print("sukses login");
-              } else {
-                statusLogin = "failed";
-                print("gagal login");
-              }
-            });
-          },
-        ),
-      ],
-    ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: CustomTextfield(
+              myHint: "input password",
+              txtController: controller.txtPassword,
+            ),
+          ),
+
+          Obx(() {
+            return controller.isLoading.value
+                ? const CircularProgressIndicator()
+                : CustomElevatedbutton(
+              text: "Login",
+              textColor: const Color.fromARGB(255, 30, 175, 44),
+              fontSize: 20,
+              onPressed: () {
+                controller.login();
+              },
+            );
+          }),
+        ],
+      ),
     );
   }
 }
