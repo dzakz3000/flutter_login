@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_first/pages/main_menu.dart';
+import 'package:flutter_first/routes.dart';
 
 class LoginController extends GetxController{
   TextEditingController txtUsername = TextEditingController();
@@ -16,7 +18,7 @@ class LoginController extends GetxController{
       Get.snackbar("error", "username dan password harus terisi");
     }else {
       try {
-        isLoading.value = true; // sebagai tanda di page nya muncul loading widget
+        isLoading.value = true; // tanda loading
         final url = Uri.parse("https://mediadwi.com/api/latihan/login");
 
         final response = await http.post(url, body: {
@@ -26,10 +28,12 @@ class LoginController extends GetxController{
 
         isLoading.value = false;
         if(response.statusCode == 200){
+
           // ambil json message ke main menu
           final data  = jsonDecode(response.body);
           if(data['status'] == true){
             Get.snackbar("berhasil", data['message']);
+            Get.offNamed(Routes.main_menu);
           }else {
             Get.snackbar("gagal", data['message']);
           }
