@@ -24,11 +24,11 @@ class MainMenu extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history_outlined),
-          label: "Home",
+          label: "History",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
-          label: "Home",
+          label: "Profile",
         )
       ]),
     )

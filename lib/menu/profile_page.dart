@@ -6,93 +6,94 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text("Profil Saya"),
-        centerTitle: true,
+        title: const Text(
+          "Profil Saya",
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: false,
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const SizedBox(height: 10),
-
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.blueAccent,
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.white,
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Color(0xFF00AA5B),
+                    child: Icon(Icons.person, size: 40, color: Colors.white),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Dzakz",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          "dzakiymang@gmail.com",
+                          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF00AA5B).withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Text(
+                            "Member Silver",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF00AA5B),
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.edit_outlined, color: Colors.black54),
+                    onPressed: () {},
+                  )
+                ],
               ),
             ),
-            const SizedBox(height: 12),
 
-            //profile
-            const Text(
-              "Dzakz",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+            const SizedBox(height: 10),
+
+            Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  _buildListTile(icon: Icons.history, title: "Riwayat Transaksi"),
+                  const Divider(height: 1, indent: 50),
+                  _buildListTile(icon: Icons.location_on_outlined, title: "Alamat Pengiriman"),
+                  const Divider(height: 1, indent: 50),
+                  _buildListTile(icon: Icons.settings_outlined, title: "Pengaturan Akun"),
+                ],
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              "dzakiymang@gmail.com",
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+
+            const SizedBox(height: 10),
+
+            Container(
+              color: Colors.white,
+              child: _buildListTile(
+                icon: Icons.logout,
+                title: "Keluar",
+                isDestructive: true,
               ),
-            ),
-            const SizedBox(height: 24),
-
-            const Divider(),
-            const SizedBox(height: 10),
-
-            // opsi opsi, edit riwayat, alamat, setting
-            _buildProfileMenuItem(
-              icon: Icons.edit_outlined,
-              title: "Edit Profil",
-              onTap: () {
-
-              },
-            ),
-            _buildProfileMenuItem(
-              icon: Icons.history,
-              title: "Riwayat",
-              onTap: () {
-
-              },
-            ),
-            _buildProfileMenuItem(
-              icon: Icons.location_on_outlined,
-              title: "Alamat",
-              onTap: () {
-
-              },
-            ),
-            _buildProfileMenuItem(
-              icon: Icons.settings_outlined,
-              title: "Pengaturan",
-              onTap: () {
-
-              },
-            ),
-
-            // garis pemisah
-            const SizedBox(height: 10),
-            const Divider(),
-            const SizedBox(height: 10),
-
-            // logout
-            _buildProfileMenuItem(
-              icon: Icons.logout,
-              title: "Keluar",
-              textColor: Colors.red,
-              iconColor: Colors.red,
-              onTap: () {
-
-              },
             ),
           ],
         ),
@@ -100,33 +101,25 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // untuk hint gambar
-  Widget _buildProfileMenuItem({
+  Widget _buildListTile({
     required IconData icon,
     required String title,
-    required VoidCallback onTap,
-    Color textColor = Colors.black87,
-    Color iconColor = Colors.blueAccent,
+    bool isDestructive = false,
   }) {
+    final color = isDestructive ? Colors.red : Colors.black87;
+
     return ListTile(
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: iconColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Icon(icon, color: iconColor),
-      ),
+      leading: Icon(icon, color: isDestructive ? Colors.red : const Color(0xFF00AA5B)),
       title: Text(
         title,
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: textColor,
+          color: color,
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16),
-      onTap: onTap,
+      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16, color: Colors.grey),
+      onTap: () {},
     );
   }
 }
