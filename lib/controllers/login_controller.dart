@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_first/models/login_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_first/pages/main_menu.dart';
@@ -10,6 +11,7 @@ class LoginController extends GetxController{
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
 
+  var loginModel = Rxn<LoginModel>();
   var isLoading = false.obs;
 
   // Method hit API
@@ -28,21 +30,22 @@ class LoginController extends GetxController{
 
         isLoading.value = false;
         if(response.statusCode == 200){
+          loginModel.value = loginModelFromJson(response.body);
 
           // ambil json message ke main menu
-          final data  = jsonDecode(response.body);
-          if(data['status'] == true){
-            Get.snackbar("berhasil", data['message']);
+          final data = jsonDecode(response.body);
+          if (data['status'] == true) {
+            Get.snackbar("Berhasil", loginModel.value?.message ?? "Login Berhasil");
             Get.offNamed(Routes.main_menu);
-          }else {
-            Get.snackbar("gagal", data['message']);
+          } else {
+            Get.snackbar("Gagal", loginModel.value?.message ?? "Login Gagal");
           }
         } else {
-          Get.snackbar("gagal", "cek internet connection");
+          Get.snackbar("Gagal", "Cek internet connection");
         }
-
-      } catch (e){
-        Get.snackbar("gagal", e.toString());
+      } catch (e) {
+        isLoading.value = false;
+        Get.snackbar("Gagal", e.toString());
       }
     }
   }
